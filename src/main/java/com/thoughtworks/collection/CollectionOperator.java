@@ -2,6 +2,7 @@ package com.thoughtworks.collection;
 
 import com.thoughtworks.collection.util.BorderUtils;
 import com.thoughtworks.collection.util.BorderUtils.Border;
+import com.thoughtworks.collection.util.NumberUtils;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.util.ArrayList;
@@ -25,7 +26,17 @@ public class CollectionOperator {
     }
 
     public List<Integer> getEvenListByIntervals(int left, int right) {
-        throw new NotImplementedException();
+        Border border = BorderUtils.valueOf(left, right);
+
+        List<Integer> ascendingOrderList = IntStream.rangeClosed(border.getStartValue(), border.getEndValue())
+                .filter(NumberUtils::isEvenNumber)
+                .collect(ArrayList::new, List::add, List::addAll);
+        if (left > right) {
+            return ascendingOrderList.stream()
+                    .sorted(Comparator.comparing(Integer::intValue).reversed())
+                    .collect(Collectors.toList());
+        }
+        return ascendingOrderList;
     }
 
     public List<Integer> popEvenElments(int[] array) {
