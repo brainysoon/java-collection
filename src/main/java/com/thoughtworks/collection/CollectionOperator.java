@@ -28,7 +28,10 @@ public class CollectionOperator {
     }
 
     public List<Integer> popEvenElments(int[] array) {
-        throw new NotImplementedException();
+
+        return IntStream.of(array)
+                .filter(NumberUtils::isEvenNumber)
+                .collect(ArrayList::new, ArrayList::add, ArrayList::addAll);
     }
 
     public int popLastElment(int[] array) {
