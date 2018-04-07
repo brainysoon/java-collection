@@ -16,13 +16,13 @@ public class Flaten {
 
     public List<Integer> transformToOneDimesional() {
         return Arrays.stream(this.array)
-                .flatMapToInt(intArray -> Arrays.stream(intArray).mapToInt(Integer::intValue))
+                .flatMap(Arrays::stream)
                 .collect(ArrayList::new, ArrayList::add, ArrayList::addAll);
     }
 
     public List<Integer> transformToUnrepeatedOneDimesional() {
         return Arrays.stream(this.array)
-                .flatMapToInt(intArray -> Arrays.stream(intArray).mapToInt(Integer::intValue))
+                .flatMap(Arrays::stream)
                 .distinct()
                 .collect(ArrayList::new, ArrayList::add, ArrayList::addAll);
     }
