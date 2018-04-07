@@ -3,7 +3,6 @@ package com.thoughtworks.collection;
 import com.thoughtworks.collection.util.NumberUtils;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
-import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -46,7 +45,10 @@ public class Reduce {
     }
 
     public int getFirstEven() {
-        throw new NotImplementedException();
+        return this.arrayList.stream()
+                .filter(NumberUtils::isEvenNumber)
+                .findFirst()
+                .get();
     }
 
     public int getIndexOfFirstEven() {
