@@ -4,6 +4,7 @@ import com.thoughtworks.collection.util.BorderUtils;
 import com.thoughtworks.collection.util.BorderUtils.Border;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.OptionalDouble;
 import java.util.stream.Collectors;
@@ -81,7 +82,17 @@ public class Add {
     }
 
     public List<Integer> sortByEvenAndOdd(List<Integer> arrayList) {
-        throw new NotImplementedException();
+        return arrayList.stream()
+                .sorted((v1, v2) -> {
+                    if (v1 % 2 == 0 && v2 % 2 == 0) {
+                        return v1 - v2;
+                    } else if (v1 % 2 != 0 && v2 % 2 != 0) {
+                        return v2 - v1;
+                    } else {
+                        return v1 % 2 == 0 ? -1 : 1;
+                    }
+                })
+                .collect(Collectors.toList());
     }
 
     public List<Integer> getProcessedList(List<Integer> arrayList) {
