@@ -2,6 +2,7 @@ package com.thoughtworks.collection;
 
 import com.thoughtworks.collection.util.BorderUtils;
 import com.thoughtworks.collection.util.BorderUtils.Border;
+import com.thoughtworks.collection.util.NumberUtils;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.util.ArrayList;
@@ -16,7 +17,7 @@ public class Add {
         Border border = BorderUtils.valueOf(leftBorder, rightBorder);
 
         return IntStream.rangeClosed(border.getStartValue(), border.getEndValue())
-                .filter(value -> value % 2 == 0)
+                .filter(NumberUtils::isEvenNumber)
                 .sum();
     }
 
@@ -24,7 +25,7 @@ public class Add {
         Border border = BorderUtils.valueOf(leftBorder, rightBorder);
 
         return IntStream.rangeClosed(border.getStartValue(), border.getEndValue())
-                .filter(value -> value % 2 != 0)
+                .filter(NumberUtils::isOddNumber)
                 .sum();
     }
 
@@ -36,13 +37,13 @@ public class Add {
 
     public List<Integer> getTripleOfOddAndAddTwo(List<Integer> arrayList) {
         return arrayList.stream()
-                .map(value -> value % 2 != 0 ? value * 3 + 2 : value)
+                .map(value -> NumberUtils.isOddNumber(value) ? value * 3 + 2 : value)
                 .collect(Collectors.toList());
     }
 
     public int getSumOfProcessedOdds(List<Integer> arrayList) {
         return arrayList.stream()
-                .filter(value -> value % 2 != 0)
+                .filter(NumberUtils::isOddNumber)
                 .mapToInt(value -> value * 3 + 5)
                 .sum();
     }
@@ -53,7 +54,7 @@ public class Add {
                 .sorted()
                 .collect(Collectors.toList());
         int length = sortedEvenList.size();
-        if (length % 2 == 0) {
+        if (NumberUtils.isEvenNumber(length)) {
             int middleIndex = length / 2;
             return (sortedEvenList.get(middleIndex - 1) + sortedEvenList.get(middleIndex)) / 2;
         } else {
@@ -63,7 +64,7 @@ public class Add {
 
     public double getAverageOfEvenIndex(List<Integer> arrayList) {
         OptionalDouble averageOptional = arrayList.stream()
-                .filter(value -> value % 2 == 0)
+                .filter(NumberUtils::isEvenNumber)
                 .mapToInt(value -> value)
                 .average();
         return averageOptional.isPresent() ? averageOptional.getAsDouble() : 0;
@@ -71,13 +72,13 @@ public class Add {
 
     public boolean isIncludedInEvenIndex(List<Integer> arrayList, Integer specialElment) {
         return arrayList.stream()
-                .filter(value -> value % 2 == 0)
+                .filter(NumberUtils::isEvenNumber)
                 .anyMatch(specialElment::equals);
     }
 
     public List<Integer> getUnrepeatedFromEvenIndex(List<Integer> arrayList) {
         return arrayList.stream()
-                .filter(value -> value % 2 == 0)
+                .filter(NumberUtils::isEvenNumber)
                 .distinct()
                 .collect(Collectors.toList());
     }
@@ -85,12 +86,12 @@ public class Add {
     public List<Integer> sortByEvenAndOdd(List<Integer> arrayList) {
         return arrayList.stream()
                 .sorted((v1, v2) -> {
-                    if (v1 % 2 == 0 && v2 % 2 == 0) {
+                    if (NumberUtils.isEvenNumber(v1) && NumberUtils.isEvenNumber(v2)) {
                         return v1 - v2;
-                    } else if (v1 % 2 != 0 && v2 % 2 != 0) {
+                    } else if (NumberUtils.isOddNumber(v1) && NumberUtils.isOddNumber(v2)) {
                         return v2 - v1;
                     } else {
-                        return v1 % 2 == 0 ? -1 : 1;
+                        return NumberUtils.isEvenNumber(v1) ? -1 : 1;
                     }
                 })
                 .collect(Collectors.toList());
