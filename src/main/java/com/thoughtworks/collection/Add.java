@@ -32,7 +32,9 @@ public class Add {
     }
 
     public List<Integer> getTripleOfOddAndAddTwo(List<Integer> arrayList) {
-        throw new NotImplementedException();
+        return arrayList.stream()
+                .map(value -> value % 2 != 0 ? value * 3 + 2 : value)
+                .collect(Collectors.toList());
     }
 
     public int getSumOfProcessedOdds(List<Integer> arrayList) {
