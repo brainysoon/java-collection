@@ -1,9 +1,11 @@
 package com.thoughtworks.collection;
 
+import com.thoughtworks.collection.util.NumberUtils;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Reduce {
 
@@ -31,7 +33,16 @@ public class Reduce {
     }
 
     public double getOrderedMedian() {
-        throw new NotImplementedException();
+        List<Integer> sortedEvenList = this.arrayList.stream()
+                .sorted()
+                .collect(Collectors.toList());
+        int length = sortedEvenList.size();
+        if (NumberUtils.isEvenNumber(length)) {
+            int middleIndex = length / 2;
+            return (sortedEvenList.get(middleIndex - 1) + sortedEvenList.get(middleIndex)) / 2.0;
+        } else {
+            return sortedEvenList.get((length) / 2);
+        }
     }
 
     public int getFirstEven() {
