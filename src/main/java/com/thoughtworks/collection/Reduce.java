@@ -24,7 +24,10 @@ public class Reduce {
     }
 
     public double getAverage() {
-        throw new NotImplementedException();
+        if (arrayList.isEmpty()) throw new RuntimeException("Must contain element");
+
+        return this.arrayList.stream()
+                .reduce(0, (sum, value) -> sum + value) / (double) arrayList.size();
     }
 
     public double getOrderedMedian() {
