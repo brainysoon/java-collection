@@ -6,6 +6,7 @@ import com.thoughtworks.collection.util.NumberUtils;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.IntStream;
 
@@ -35,7 +36,7 @@ public class CollectionOperator {
     }
 
     public int popLastElment(int[] array) {
-        throw new NotImplementedException();
+        return array[array.length - 1];
     }
 
     public List<Integer> popCommonElement(int[] firstArray, int[] secondArray) {
