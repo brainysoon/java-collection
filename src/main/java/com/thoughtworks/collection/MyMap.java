@@ -24,7 +24,10 @@ public class MyMap {
     }
 
     public List<String> mapLetter() {
-        throw new NotImplementedException();
+        return this.array.stream()
+                .map(index -> letters[index - 1])
+                .collect(Collectors.toList());
+
     }
 
     public List<String> mapLetters() {
