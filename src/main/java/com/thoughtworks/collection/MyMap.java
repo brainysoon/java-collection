@@ -31,7 +31,14 @@ public class MyMap {
     }
 
     public List<String> mapLetters() {
-        throw new NotImplementedException();
+        return this.array.stream()
+                .map(index -> {
+                    int jumpIndex = index - 1;
+                    String firstLetter = jumpIndex / 26 > 0 ? letters[jumpIndex / 26 - 1] : "";
+                    String secondLetter = jumpIndex % 26 >= 0 ? letters[jumpIndex % 26] : "";
+                    return firstLetter + secondLetter;
+                })
+                .collect(Collectors.toList());
     }
 
     public List<Integer> sortFromBig() {
