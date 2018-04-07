@@ -6,9 +6,7 @@ import com.thoughtworks.collection.util.NumberUtils;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
-import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class CollectionOperator {
@@ -17,12 +15,7 @@ public class CollectionOperator {
 
         List<Integer> ascendingOrderList = IntStream.rangeClosed(border.getStartValue(), border.getEndValue())
                 .collect(ArrayList::new, List::add, List::addAll);
-        if (left > right) {
-            return ascendingOrderList.stream()
-                    .sorted(Comparator.comparing(Integer::intValue).reversed())
-                    .collect(Collectors.toList());
-        }
-        return ascendingOrderList;
+        return left > right ? NumberUtils.inverseNumberArray(ascendingOrderList) : ascendingOrderList;
     }
 
     public List<Integer> getEvenListByIntervals(int left, int right) {
@@ -31,12 +24,7 @@ public class CollectionOperator {
         List<Integer> ascendingOrderList = IntStream.rangeClosed(border.getStartValue(), border.getEndValue())
                 .filter(NumberUtils::isEvenNumber)
                 .collect(ArrayList::new, List::add, List::addAll);
-        if (left > right) {
-            return ascendingOrderList.stream()
-                    .sorted(Comparator.comparing(Integer::intValue).reversed())
-                    .collect(Collectors.toList());
-        }
-        return ascendingOrderList;
+        return left > right ? NumberUtils.inverseNumberArray(ascendingOrderList) : ascendingOrderList;
     }
 
     public List<Integer> popEvenElments(int[] array) {
