@@ -1,5 +1,7 @@
 package com.thoughtworks.collection;
 
+import com.thoughtworks.collection.util.BorderUtils;
+import com.thoughtworks.collection.util.BorderUtils.Border;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.util.List;
@@ -7,19 +9,17 @@ import java.util.stream.IntStream;
 
 public class Add {
     public int getSumOfEvens(int leftBorder, int rightBorder) {
-        int startValue = leftBorder < rightBorder ? leftBorder : rightBorder;
-        int entValue = leftBorder > rightBorder ? leftBorder : rightBorder;
+        Border border = BorderUtils.valueOf(leftBorder, rightBorder);
 
-        return IntStream.rangeClosed(startValue, entValue)
+        return IntStream.rangeClosed(border.getStartValue(), border.getEndValue())
                 .filter(value -> value % 2 == 0)
                 .sum();
     }
 
     public int getSumOfOdds(int leftBorder, int rightBorder) {
-        int startValue = leftBorder < rightBorder ? leftBorder : rightBorder;
-        int entValue = leftBorder > rightBorder ? leftBorder : rightBorder;
+        Border border = BorderUtils.valueOf(leftBorder, rightBorder);
 
-        return IntStream.rangeClosed(startValue, entValue)
+        return IntStream.rangeClosed(border.getStartValue(), border.getEndValue())
                 .filter(value -> value % 2 != 0)
                 .sum();
     }
