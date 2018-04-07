@@ -49,6 +49,8 @@ public class MyMap {
     }
 
     public List<Integer> sortFromSmall() {
-        throw new NotImplementedException();
+        return this.array.stream()
+                .sorted(Comparator.comparing(Integer::intValue))
+                .collect(Collectors.toList());
     }
 }
