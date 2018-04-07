@@ -19,4 +19,8 @@ public class NumberUtils {
                 .sorted(Comparator.comparing(Integer::intValue).reversed())
                 .collect(Collectors.toList());
     }
+
+    public static boolean isThreeTimesOf(int number) {
+        return number % 3 == 0;
+    }
 }
