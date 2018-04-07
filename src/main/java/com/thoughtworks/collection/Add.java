@@ -4,6 +4,7 @@ import com.thoughtworks.collection.util.BorderUtils;
 import com.thoughtworks.collection.util.BorderUtils.Border;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.OptionalDouble;
@@ -96,6 +97,11 @@ public class Add {
     }
 
     public List<Integer> getProcessedList(List<Integer> arrayList) {
-        throw new NotImplementedException();
+        List<Integer> timesArray = new ArrayList<>();
+
+        for (int i = 1; i < arrayList.size(); i++) {
+            timesArray.add((arrayList.get(i - 1) + arrayList.get(i)) * 3);
+        }
+        return timesArray;
     }
 }
