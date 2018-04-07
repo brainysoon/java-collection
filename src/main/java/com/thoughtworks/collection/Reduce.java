@@ -52,7 +52,17 @@ public class Reduce {
     }
 
     public int getIndexOfFirstEven() {
-        throw new NotImplementedException();
+        return this.arrayList.stream()
+                .reduce(0, (index, value) -> {
+                    if (index > 0) return index;
+                    else {
+                        if (NumberUtils.isOddNumber(value)) {
+                            return index - 1;
+                        } else {
+                            return -index;
+                        }
+                    }
+                });
     }
 
     public boolean isEqual(List<Integer> arrayList) {
