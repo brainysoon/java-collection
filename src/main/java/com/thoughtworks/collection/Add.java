@@ -5,6 +5,7 @@ import com.thoughtworks.collection.util.BorderUtils.Border;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.util.List;
+import java.util.OptionalDouble;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -59,7 +60,11 @@ public class Add {
     }
 
     public double getAverageOfEvenIndex(List<Integer> arrayList) {
-        throw new NotImplementedException();
+        OptionalDouble averageOptional = arrayList.stream()
+                .filter(value -> value % 2 == 0)
+                .mapToInt(value -> value)
+                .average();
+        return averageOptional.isPresent() ? averageOptional.getAsDouble() : 0;
     }
 
     public boolean isIncludedInEvenIndex(List<Integer> arrayList, Integer specialElment) {
