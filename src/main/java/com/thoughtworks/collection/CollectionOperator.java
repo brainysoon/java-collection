@@ -5,9 +5,8 @@ import com.thoughtworks.collection.util.BorderUtils.Border;
 import com.thoughtworks.collection.util.NumberUtils;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class CollectionOperator {
@@ -40,7 +39,13 @@ public class CollectionOperator {
     }
 
     public List<Integer> popCommonElement(int[] firstArray, int[] secondArray) {
-        throw new NotImplementedException();
+
+        Set<Integer> secondArraySet = Arrays.stream(secondArray)
+                .collect(HashSet::new, HashSet::add, HashSet::addAll);
+
+        return Arrays.stream(firstArray)
+                .filter(secondArraySet::contains)
+                .collect(ArrayList::new, ArrayList::add, ArrayList::addAll);
     }
 
     public List<Integer> addUncommonElement(Integer[] firstArray, Integer[] secondArray) {
