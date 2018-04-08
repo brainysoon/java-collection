@@ -83,6 +83,10 @@ public class Reduce {
     }
 
     public int getIndexOfLastOdd() {
-        throw new NotImplementedException();
+        return this.arrayList.lastIndexOf(this.arrayList.stream()
+                .reduce(0, (odd, value) -> {
+                    if (NumberUtils.isOddNumber(value)) return value;
+                    return odd;
+                }));
     }
 }
