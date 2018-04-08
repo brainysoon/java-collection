@@ -75,7 +75,11 @@ public class Reduce {
     }
 
     public int getLastOdd() {
-        throw new NotImplementedException();
+        return this.arrayList.stream()
+                .reduce(0, (odd, value) -> {
+                    if (NumberUtils.isOddNumber(value)) return value;
+                    return odd;
+                });
     }
 
     public int getIndexOfLastOdd() {
