@@ -66,7 +66,11 @@ public class Reduce {
     }
 
     public boolean isEqual(List<Integer> arrayList) {
-        throw new NotImplementedException();
+        return this.arrayList.stream()
+                .reduce(0, (diff, value) -> {
+                    if (!arrayList.contains(value)) return diff + 1;
+                    return diff;
+                }) == 0;
     }
 
     //实现接口SingleLink，然后再此函数内使用
