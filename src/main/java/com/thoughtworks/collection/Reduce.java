@@ -74,8 +74,11 @@ public class Reduce {
     }
 
     //实现接口SingleLink，然后再此函数内使用
-    public Double getMedianInLinkList(SingleLink singleLink) {
-        throw new NotImplementedException();
+    public Double getMedianInLinkList(SingleLink<Integer> singleLink) {
+        this.arrayList.forEach(singleLink::addTailPointer);
+
+        int length = this.arrayList.size();
+        return (singleLink.getNode(length / 2) + singleLink.getNode(length / 2 + 1)) / 2.0;
     }
 
     public int getLastOdd() {
