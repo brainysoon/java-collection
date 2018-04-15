@@ -3,7 +3,7 @@ package com.thoughtworks.collection;
 import com.thoughtworks.collection.util.NumberUtils;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class Filter {
@@ -33,8 +33,7 @@ public class Filter {
     }
 
     public List<Integer> getDifferentElements() {
-        return this.array.stream()
-                .distinct()
-                .collect(Collectors.toList());
+
+        return new ArrayList<>(new HashSet<>(this.array));
     }
 }
